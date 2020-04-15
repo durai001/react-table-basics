@@ -34,10 +34,11 @@ class App extends Component {
       console.log(JSON.stringify(files))
       // adding id and selected key in table rows
 
-      // files.forEach((element, index) => {
-      //   element.id = index
-      //   element.isSelected = false
-      // });
+      files.forEach((element, index) => {
+        // element.id = index
+        element.date = moment(element.date).format("DD/MM/YYYY")
+        // element.isSelected = false
+      });
 
       this.setState({ selectAllRow: false, actualTableRows: files, tableHeader: keys, tableRows: files, dateRange: undefined })
     } else {
@@ -68,13 +69,21 @@ class App extends Component {
     return tableRows
   }
   sortTable = (sortBy) => {
-    let { tableRows, sortType } = this.state
+    let { actualTableRows, sortType } = this.state
+    actualTableRows = _.sortBy(actualTableRows, function (o) {
+      console.log(sortBy)
+      if (sortBy === "date") {
+        return moment(o[sortBy]);
+      } else {
+        return o[sortBy]
+      }
+    })
     if (sortType) {
-      tableRows = _.sortBy(tableRows, sortBy);
-    } else {
-      tableRows = _.sortBy(tableRows, sortBy).reverse();
+     } else {
+      actualTableRows = actualTableRows.reverse();
+      this.setState({actualTableRows})
     }
-    this.setState({ tableRows, sortBy, sortType: !sortType })
+    this.setState({actualTableRows, tableRows:actualTableRows, sortBy, sortType: !sortType })
   }
   // table sorting
   filterByDate = (dateObj) => {
@@ -120,17 +129,17 @@ class App extends Component {
     let { actualTableRows } = this.state
     if (dateRange.start && dateRange.end) {
       let tableRows = _.filter(actualTableRows, function (o) {
-        //console.log(moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY"))
+        //console.log(moment(o.date, "MM/DD/YYYY"))
         // if (moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") >= moment(dateRange.start, "DD/MM/YYYY").format("DD/MM/YYYY") &&
         //   moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") <= moment(dateRange.end, "DD/MM/YYYY").format("DD/MM/YYYY")) {
         //   return o
         // }
         // console.log(moment(o.date, "DD/MM/YYYY").isAfter(moment(dateRange.start, "DD/MM/YYYY"),'day'))
         // console.log(moment(dateRange.start, "DD/MM/YYYY").isAfter(moment(o.date, "DD/MM/YYYY"),'day'))
-        if ((moment(o.date, "DD/MM/YYYY").isAfter(moment(dateRange.start, "DD/MM/YYYY"), 'day') ||
-          moment(o.date, "DD/MM/YYYY").isSame(moment(dateRange.start, "DD/MM/YYYY"), 'day')) &&
-          (moment(dateRange.end, "DD/MM/YYYY").isAfter(moment(o.date, "DD/MM/YYYY"), 'day') ||
-            moment(dateRange.end, "DD/MM/YYYY").isSame(moment(o.date, "DD/MM/YYYY"), 'day'))) {
+        if ((moment(o.date, "MM/DD/YYYY").isAfter(moment(dateRange.start, "MM/DD/YYYY"), 'day') ||
+          moment(o.date, "MM/DD/YYYY").isSame(moment(dateRange.start, "MM/DD/YYYY"), 'day')) &&
+          (moment(dateRange.end, "MM/DD/YYYY").isAfter(moment(o.date, "MM/DD/YYYY"), 'day') ||
+            moment(dateRange.end, "MM/DD/YYYY").isSame(moment(o.date, "MM/DD/YYYY"), 'day'))) {
           console.log(o)
           return o
         }
@@ -157,7 +166,7 @@ class App extends Component {
           .replace(/\W/g, '_')
     }
     let totalAmount = 0
-    if(tableRows&&tableRows.length>0){
+    if (tableRows && tableRows.length > 0) {
       totalAmount = _.sumBy(tableRows, function (o) { return o["milestone_amount"]; })
     }
     // let csvData = []
@@ -201,7 +210,7 @@ class App extends Component {
                     Export CSV
               </button>
                   </CSVLink>
-                  <lable className="text-bold font-weight-bold text-danger ml-2">Total Milestone Amount is: </lable><span className="font-weight-bold ">{totalAmount}</span>
+                  <lable className="text-bold font-weight-bold text-danger ml-2">Total Milestone Amount is: </lable><span className="font-weight-bold ">{totalAmount.toFixed(2)}</span>
                 </div>
                 : null}
 
