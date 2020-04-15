@@ -29,7 +29,7 @@ class cashflowcomponent extends Component {
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}
                     data={[
-                        ['Month', 'Cash Flow', "Due Amount from last month"],
+                        ['Month', 'Cash Flow', "Due Amount"],
                         ['March', 1000, 400],
                         ['April', 1170, 460],
                         ['May', 660, 1120],

@@ -242,7 +242,7 @@ class App extends Component {
             <div className="col-6 card">
               <Weekchart actualTableRows={actualTableRows} />
             </div>
-            <div className="col-6 card">
+            <div className="col-6 card ">
 
               {/* <button className="btn btn-primary  float-right" data-toggle="tooltip"
             title="load CSV" onClick={e => { document.getElementById("ObiWan").click(); document.getElementById("ObiWan").value = null }}>
@@ -250,7 +250,7 @@ class App extends Component {
             upload file
             </button> */}
               {tableHeader && tableHeader.length > 0 ?
-                < div className="mt-4">
+                < div className="mt-4 custom-table">
                   {tableRows && tableRows.length > 0 ?
                     <div className="float-left" >
                       <CSVLink filename={"MRF.csv"} data={tableRows} id="CSVLink">

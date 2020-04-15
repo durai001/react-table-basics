@@ -27,3 +27,9 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
+
+.custom-table{
+    display: block;
+    height: 372px;
+    overflow-y: scroll;
+}

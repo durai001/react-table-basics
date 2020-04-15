@@ -21,7 +21,7 @@ class monthchartcomponent extends Component {
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}
                     data={[
-                        ['Month', 'Cash Flow', "Due Amount from last month",'Po Counts'],
+                        ['Month', 'Cash Flow', "Due Amount",'Po Counts'],
                         ['March', 1000, 400, 200],
                         ['April', 1170, 460, 250],
                         ['May', 660, 1120, 300],

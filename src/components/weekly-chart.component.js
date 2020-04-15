@@ -21,11 +21,11 @@ class weekchartcomponent extends Component {
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}
                     data={[
-                        ['Month', 'Cash Flow', "Due Amount from last month",'Po Counts'],
-                        ['March', 1000, 400, 200],
-                        ['April', 1170, 460, 250],
-                        ['May', 660, 1120, 300],
-                        ['June', 1030, 540, 350],
+                        ['Month', 'Cash Flow', "Due Amount",'Po Counts'],
+                        ['1st week', 1000, 400, 200],
+                        ['2nd week', 1170, 460, 250],
+                        ['3rf week', 660, 1120, 300],
+                        ['4th week', 1030, 540, 350],
                     ]}
                     options={{
                         // Material design options
