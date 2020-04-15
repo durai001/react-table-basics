@@ -24,7 +24,7 @@ class cashflowcomponent extends Component {
 
                 </div>
                 <Chart className="mt-4"
-                    width={'800px'}
+                    width={'100%'}
                     height={'300px'}
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}

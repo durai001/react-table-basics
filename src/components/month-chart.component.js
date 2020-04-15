@@ -16,7 +16,7 @@ class monthchartcomponent extends Component {
         return (
             <div>
                 <Chart
-                    width={'800px'}
+                    width={'100%'}
                     height={'300px'}
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}
