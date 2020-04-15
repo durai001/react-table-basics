@@ -120,17 +120,17 @@ class App extends Component {
     let { actualTableRows } = this.state
     if (dateRange.start && dateRange.end) {
       let tableRows = _.filter(actualTableRows, function (o) {
-        //console.log(moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY"))
+        //console.log(moment(o.date, "MM/DD/YYYY"))
         // if (moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") >= moment(dateRange.start, "DD/MM/YYYY").format("DD/MM/YYYY") &&
         //   moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") <= moment(dateRange.end, "DD/MM/YYYY").format("DD/MM/YYYY")) {
         //   return o
         // }
         // console.log(moment(o.date, "DD/MM/YYYY").isAfter(moment(dateRange.start, "DD/MM/YYYY"),'day'))
         // console.log(moment(dateRange.start, "DD/MM/YYYY").isAfter(moment(o.date, "DD/MM/YYYY"),'day'))
-        if((moment(o.date, "DD/MM/YYYY").isAfter(moment(dateRange.start, "DD/MM/YYYY"),'day') ||
-            moment(o.date, "DD/MM/YYYY").isSame(moment(dateRange.start, "DD/MM/YYYY"),'day')) &&
-           (moment(dateRange.end, "DD/MM/YYYY").isAfter(moment(o.date, "DD/MM/YYYY"),'day') ||
-            moment(dateRange.end, "DD/MM/YYYY").isSame(moment(o.date, "DD/MM/YYYY"),'day') )){
+        if((moment(o.date, "MM/DD/YYYY").isAfter(moment(dateRange.start, "MM/DD/YYYY"),'day') ||
+            moment(o.date, "MM/DD/YYYY").isSame(moment(dateRange.start, "MM/DD/YYYY"),'day')) &&
+           (moment(dateRange.end, "MM/DD/YYYY").isAfter(moment(o.date, "MM/DD/YYYY"),'day') ||
+            moment(dateRange.end, "MM/DD/YYYY").isSame(moment(o.date, "MM/DD/YYYY"),'day') )){
           console.log(o)
           return o
         }
