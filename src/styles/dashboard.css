@@ -1,0 +1,29 @@
+.status-card{
+    background-color: red;
+}
+.po_nunmber-circle {
+    font: 32px Arial, sans-serif;
+    width: 3em;
+    height: 3em;
+    margin-left: 39%;
+    background: black;
+    border: 0.1em solid #666;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 3em;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+.month-card{
+    background-color: white;
+    color: black;
+    font: 39px Arial, sans-serif;
+    border: 0.1em solid #666;
+    line-height: 2em;
+}
+.wrap-text{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

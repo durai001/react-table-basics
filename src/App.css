@@ -1,3 +1,5 @@
+
+
 .App {
   background-color: white;
   text-align: center;
@@ -51,8 +53,8 @@
 .color-picker-bottom{
   z-index: 99;
   background: #e1e1e1;
-  top: 48px;
+  top: 23px;
   position: absolute;
-  margin-left: 74%;
+  margin-left:  52%;
   margin-top: 4.5%;
 }

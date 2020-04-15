@@ -7,6 +7,10 @@ import { CSVLink } from "react-csv";
 import _ from "lodash";
 import DateRangePicker from "react-daterange-picker";
 import "react-daterange-picker/dist/css/react-calendar.css";
+import Monthchart from "./components/month-chart.component";
+import Weekchart from "./components/weekly-chart.component";
+import Cashflowchart from "./components/cash_flow_chart.compoonent";
+import "./styles/dashboard.css"
 import './App.css';
 
 //static record
@@ -21,7 +25,7 @@ class App extends Component {
       sortType: true,
       rowsPerPageOptions: [10, 20, 30],
       currentPage: 1, rowsPerPage: 10, selectAllRow: false,
-      tableHeader: ["po_number", "currency", "milestone_amount", "date", "payment_term_details"],
+      tableHeader: ["po_number", "date", "milestone_amount",],
       tableRows: record,
       actualTableRows: record,
       tableTitle: "MRF Milestone Payments Dashboard"
@@ -79,11 +83,11 @@ class App extends Component {
       }
     })
     if (sortType) {
-     } else {
+    } else {
       actualTableRows = actualTableRows.reverse();
-      this.setState({actualTableRows})
+      this.setState({ actualTableRows })
     }
-    this.setState({actualTableRows, tableRows:actualTableRows, sortBy, sortType: !sortType })
+    this.setState({ actualTableRows, tableRows: actualTableRows, sortBy, sortType: !sortType })
   }
   // table sorting
   filterByDate = (dateObj) => {
@@ -154,8 +158,17 @@ class App extends Component {
       tableRows: this.state.actualTableRows, dateRange: undefined
     })
   }
+  componentDidMount() {
+    let totalAmountChash = _.sumBy(this.state.actualTableRows, function (o) { return o["milestone_amount"]; })
+    totalAmountChash = totalAmountChash.toLocaleString('en-IN', {
+      maximumFractionDigits: 2,
+      style: 'currency',
+      currency: 'INR'
+    })
+    this.setState({ totalAmountChash })
+  }
   render() {
-    let { tableTitle, dateRange, showCalender, tableHeader, selectAllRow, tableRows, rowsPerPageOptions, currentPage, rowsPerPage, startDate, endDate, key } = this.state
+    let { tableTitle, dateRange, totalAmountChash,showCalender, tableHeader, actualTableRows, selectAllRow, tableRows, rowsPerPageOptions, currentPage, rowsPerPage, startDate, endDate, key } = this.state
     const papaparseOptions = {
       header: true,
       dynamicTyping: true,
@@ -168,6 +181,7 @@ class App extends Component {
     let totalAmount = 0
     if (tableRows && tableRows.length > 0) {
       totalAmount = _.sumBy(tableRows, function (o) { return o["milestone_amount"]; })
+
     }
     // let csvData = []
     // tableRows.forEach(element => {
@@ -178,7 +192,8 @@ class App extends Component {
     // });
 
     return (
-      <div className="container-fluid App">
+      <div className=" App">
+
         <CSVReader
           cssClass="csv-reader-input d-none "
           onFileLoaded={this.handleForce}
@@ -191,94 +206,136 @@ class App extends Component {
           <h2 className="d-inline">
             {tableTitle}
           </h2>
-          {/* <button className="btn btn-primary  float-right" data-toggle="tooltip"
+
+
+          <div className="row">
+            <div className="col-12">
+              <div className="card-header status-card">
+                <div className="row">
+                  <div className="col-3">
+                    <div className="po_nunmber-circle">
+                      <lable>{actualTableRows.length}</lable>
+                    </div>
+                    <lable># of PO</lable>
+                  </div>
+                  <div className="col-6">
+                    <div className="mt-3">
+                      <lable className="card-header month-card">APRIL</lable>
+                    </div>
+                  </div>
+                  <div className="col-3  ">
+                    <div className="po_nunmber-circle">
+                      <lable className="wrap-text">{totalAmountChash}</lable>
+                    </div>
+                    <lable>CASH FLOW</lable>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-6 card">
+              <Monthchart actualTableRows={actualTableRows} />
+            </div>
+            <div className="col-6 card">
+              <Cashflowchart actualTableRows={actualTableRows} />
+            </div>
+
+            <div className="col-6 card">
+              <Weekchart actualTableRows={actualTableRows} />
+            </div>
+            <div className="col-6 card">
+
+              {/* <button className="btn btn-primary  float-right" data-toggle="tooltip"
             title="load CSV" onClick={e => { document.getElementById("ObiWan").click(); document.getElementById("ObiWan").value = null }}>
             <i class="fas fa-file-download fa-lg mr-2"></i>
             upload file
             </button> */}
-          {tableHeader && tableHeader.length > 0 ?
-            < div className="mt-4">
-              {tableRows && tableRows.length > 0 ?
-                <div className="float-left" >
-                  <CSVLink filename={"MRF.csv"} data={tableRows} id="CSVLink">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-warning"
-                      data-toggle="tooltip"
-                      title="Download as a CSV">
-                      <i class="fa fa-upload  fa-lg mr-2"></i>
+              {tableHeader && tableHeader.length > 0 ?
+                < div className="mt-4">
+                  {tableRows && tableRows.length > 0 ?
+                    <div className="float-left" >
+                      <CSVLink filename={"MRF.csv"} data={tableRows} id="CSVLink">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-warning"
+                          data-toggle="tooltip"
+                          title="Download as a CSV">
+                          <i class="fa fa-upload  fa-lg mr-2"></i>
                     Export CSV
               </button>
-                  </CSVLink>
-                  <lable className="text-bold font-weight-bold text-danger ml-2">Total Milestone Amount is: </lable><span className="font-weight-bold ">{totalAmount.toFixed(2)}</span>
-                </div>
-                : null}
-
-              <span>
-
-                <button className="btn btn-primary  float-right " data-toggle="tooltip"
-                  title="Filter by date" onClick={e => this.setState({ showCalender: !showCalender })}>
-                  {dateRange ?
-                    <lable className="form-control d-inline mr-2 "> {dateRange.start.format("DD-MM-YYYY")
-                      + " | " +
-                      dateRange.end.format("DD-MM-YYYY")}
-                      <button className="btn btn-danger btn-sm ml-2 mb-1" onClick={this.removeFilter}
-                      ><i class="fa fa-times" aria-hidden="true"></i>
-                      </button>
-                    </lable>
+                      </CSVLink>
+                      <lable className="text-bold font-weight-bold text-danger ml-2">Total Milestone Amount is: </lable><span className="font-weight-bold ">{totalAmount.toFixed(2)}</span>
+                    </div>
                     : null}
 
-                  <i class="fa fa-calendar fa-lg " aria-hidden="true"></i>
-                </button>
+                  <span>
 
-                {showCalender ?
-                  <div className="card-body date-picker color-picker-bottom " onMouseLeave={() => this.setState({ showCalender: false })} >
-                    <DateRangePicker
-                      value={this.state.dateRange}
-                      onSelect={this.filterByDate}
-                      singleDateRange={true}
-                    />
-                  </div>
-                  : null}
+                    <button className="btn btn-primary  float-right " data-toggle="tooltip"
+                      title="Filter by date" onClick={e => this.setState({ showCalender: !showCalender })}>
+                      {dateRange ?
+                        <lable className="form-control d-inline mr-2 "> {dateRange.start.format("DD-MM-YYYY")
+                          + " | " +
+                          dateRange.end.format("DD-MM-YYYY")}
+                          <button className="btn btn-danger btn-sm ml-2 mb-1" onClick={this.removeFilter}
+                          ><i class="fa fa-times" aria-hidden="true"></i>
+                          </button>
+                        </lable>
+                        : null}
 
-              </span>
+                      <i class="fa fa-calendar fa-lg " aria-hidden="true"></i>
+                    </button>
+
+                    {showCalender ?
+                      <div className="card-body date-picker color-picker-bottom " onMouseLeave={() => this.setState({ showCalender: false })} >
+                        <DateRangePicker
+                          value={this.state.dateRange}
+                          onSelect={this.filterByDate}
+                          singleDateRange={true}
+                        />
+                      </div>
+                      : null}
+
+                  </span>
 
 
-              <table className="table table-hover ">
-                <thead>
-                  <tr>
-                    {/* select all rows */}
+                  <table className="table table-hover ">
+                    <thead>
+                      <tr>
+                        {/* select all rows */}
 
-                    {/* <th>
+                        {/* <th>
                       <Checkbox
                         onChange={() => this.handleSelect('All', !selectAllRow)}
                         checked={selectAllRow}
                         inputProps={{ 'aria-labelledby': 1 }}
                       /><span>Select All</span></th> */}
-                    {tableHeader && tableHeader.map((header, index) => <th className="c-pointer" key={index} style={{ width: header === "payment_term_details" ? "50%" : "" }} onClick={e => this.sortTable(header)}>{header}</th>)}
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableRows && tableRows.map((rowObj, index) => <tr key={index}>
-                    {/* select all individual row */}
+                        {tableHeader && tableHeader.map((header, index) => <th className="c-pointer" key={index} style={{ width: header === "payment_term_details" ? "50%" : "" }} onClick={e => this.sortTable(header)}>{header}</th>)}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {tableRows && tableRows.map((rowObj, index) => <tr key={index}>
+                        {/* select all individual row */}
 
-                    {/* <td>
+                        {/* <td>
                       <Checkbox
                         onChange={() => this.handleSelect(rowObj.id, rowObj.isSelected ? false : true)}
                         checked={rowObj.isSelected ? true : false}
                         inputProps={{ 'aria-labelledby': 1 }}
                       /></td> */}
-                    {tableHeader && tableHeader.map((header, index) =>
-                      <td key={index}>
+                        {tableHeader && tableHeader.map((header, index) =>
+                          <td key={index}>
 
-                        {header === "date" ? moment(rowObj[header], "MM/DD/YYYY").format("DD/MM/YYYY") : rowObj[header]}</td>
-                    )}
-                  </tr>
-                  )}
-                </tbody>
-              </table>
+                            {header === "date" ? moment(rowObj[header], "MM/DD/YYYY").format("DD/MM/YYYY") : rowObj[header]}</td>
+                        )}
+                      </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+                : null}
             </div>
-            : null}
+          </div>
+
+
 
           {/* pagination */}
 
