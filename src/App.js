@@ -86,7 +86,7 @@ class App extends Component {
           // // console.log(moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY"), moment(startDate, "DD/MM/YYYY").format("DD/MM/YYYY"), moment(o.date) >= moment(startDate))
           // // console.log(new Date(o.date), new Date(startDate), moment(o.date), moment(startDate),
           //   moment(startDate, "DD/MM/YYYY").format("DD/MM/YYYY"), moment(endDate, "DD/MM/YYYY").format("DD/MM/YYYY"))
-          if (moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") >= moment(endDate, "DD/MM/YYYY").format("DD/MM/YYYY") && moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") <= moment(startDate, "DD/MM/YYYY").format("DD/MM/YYYY")) {
+          if (moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") >= moment(startDate, "DD/MM/YYYY").format("DD/MM/YYYY") && moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") <= moment(endDate, "DD/MM/YYYY").format("DD/MM/YYYY")) {
             return o
           }
         });
@@ -116,11 +116,22 @@ class App extends Component {
   }
 
   filterByDate = (dateRange, states) => {
+    console.log(moment(dateRange.start, "DD/MM/YYYY"), moment(dateRange.end, "DD/MM/YYYY"))
     let { actualTableRows } = this.state
     if (dateRange.start && dateRange.end) {
       let tableRows = _.filter(actualTableRows, function (o) {
-        if (moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") >= moment(dateRange.end, "DD/MM/YYYY").format("DD/MM/YYYY") &&
-          moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") <= moment(dateRange.start, "DD/MM/YYYY").format("DD/MM/YYYY")) {
+        //console.log(moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY"))
+        // if (moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") >= moment(dateRange.start, "DD/MM/YYYY").format("DD/MM/YYYY") &&
+        //   moment(o.date, "DD/MM/YYYY").format("DD/MM/YYYY") <= moment(dateRange.end, "DD/MM/YYYY").format("DD/MM/YYYY")) {
+        //   return o
+        // }
+        // console.log(moment(o.date, "DD/MM/YYYY").isAfter(moment(dateRange.start, "DD/MM/YYYY"),'day'))
+        // console.log(moment(dateRange.start, "DD/MM/YYYY").isAfter(moment(o.date, "DD/MM/YYYY"),'day'))
+        if((moment(o.date, "DD/MM/YYYY").isAfter(moment(dateRange.start, "DD/MM/YYYY"),'day') ||
+            moment(o.date, "DD/MM/YYYY").isSame(moment(dateRange.start, "DD/MM/YYYY"),'day')) &&
+           (moment(dateRange.end, "DD/MM/YYYY").isAfter(moment(o.date, "DD/MM/YYYY"),'day') ||
+            moment(dateRange.end, "DD/MM/YYYY").isSame(moment(o.date, "DD/MM/YYYY"),'day') )){
+          console.log(o)
           return o
         }
       });
