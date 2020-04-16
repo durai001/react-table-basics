@@ -21,7 +21,7 @@ class weekchartcomponent extends Component {
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}
                     data={[
-                        ['Month', 'cashflow (INR crore)', "carry forward (INR crore)",'PO Count'],
+                        ['Week', 'cashflow (INR crore)', "carry forward (INR crore)",'PO Count'],
                         ['1st week', 1000, 400, 200],
                         ['2nd week', 1170, 460, 250],
                         ['3rd week', 660, 1120, 300],
