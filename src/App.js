@@ -14,7 +14,7 @@ import "./styles/dashboard.css"
 import './App.css';
 
 //static record
-let record = [{ "po_number": " 1700001737 - 1", "currency": "EUR", "milestone_amount": 477475.2, "date": "6/30/2017", "payment_term_details": "a. 20% payment in advance on presentation of bank guarantee as per format prescribed through our banker in India." }, { "po_number": " 1700001737 - 1", "currency": "EUR", "milestone_amount": 1909900.8, "date": "3/10/2018", "payment_term_details": "b. 80% payment by a Letter of Credit will be opened 5 month#s prior to shipping through State Bank of Mysore, Chennai " }, { "po_number": " 1700001757 - 3", "currency": "EUR", "milestone_amount": 479055.2, "date": "2/13/2019", "payment_term_details": "a. 20% payment in advance on presentation of bank guarantee as per format prescribed through our banker in India." }, { "po_number": " 1700001757 - 3", "currency": "EUR", "milestone_amount": 1916220.8, "date": "4/9/2019", "payment_term_details": "b. 80% payment by a Letter of Credit will be opened 5 month#s prior to shipping through State Bank of Mysore, Chennai " }, { "po_number": " 1700001778 - 1", "currency": "EUR", "milestone_amount": 124815.75, "date": "07/06/18", "payment_term_details": "a.15% payment in advance on presentation of bank guarantee as per format prescribed by our banker in India (Citi Bank)." }, { "po_number": " 1700001778 - 1", "currency": "EUR", "milestone_amount": 582473.5, "date": "4/9/2019", "payment_term_details": "b. 75% payment by a Letter of Credit will be opened 3 month's prior to the shipment" }, { "po_number": " 1700001778 - 1", "currency": "EUR", "milestone_amount": 83210.5, "date": "7/29/2019", "payment_term_details": "c. 10% after installation & commissioning and factry acceptance" }, { "po_number": " 1700001790 - 1", "currency": "EUR", "milestone_amount": 194200, "date": "01/31/2018", "payment_term_details": "a.20% payment in advance on presentation of a bank guarantee as per format prescribed by our banker in India." }, { "po_number": " 1700001790 - 1", "currency": "EUR", "milestone_amount": 679700, "date": "09/04/2019", "payment_term_details": "b.  80% will be confirmed by an ILC of which 70% will be paid against shipping documents as stated in the LC and  10% will be after  commissioning against Warranty Guarantee for 10% valid throughout the warranty period, payable latest 120 days from shipment date" }, { "po_number": " 1700002036 - 1", "currency": "USD", "milestone_amount": 2000199, "date": "03/25/2019", "payment_term_details": "Payment terms: LC at Sight" }, { "po_number": " 1700002134 - 0", "currency": "EUR", "milestone_amount": 44064.5, "date": "12/06/18", "payment_term_details": "a.10% payment in advance on presentation of a bank guarantee as per format prescribed by our banker in India. The ABG should be an advising." }, { "po_number": " 1700002134 - 0", "currency": "EUR", "milestone_amount": 396580.5, "date": "8/10/2019", "payment_term_details": "b. 90% against presentation of Shipping documents and receipt of Performance Bank Gurantee (Refer warranty Clause) " }, { "po_number": " 1700002205 - 2", "currency": "USD", "milestone_amount": 11466, "date": "03/25/2019", "payment_term_details": "Payment terms : 10% advance and balance by LC." }, { "po_number": " 1700002205 - 2", "currency": "USD", "milestone_amount": 103194, "date": "6/3/2019", "payment_term_details": "Payment terms : 10% advance and balance by LC." }, { "po_number": 4300056603, "currency": "INR", "milestone_amount": 6144000, "date": "01/09/-17", "payment_term_details": "10% ADVANCE AGAINST SUBMISSION OF BANK GUARANTEE FOR THE ADVANCE AMOUNT VALID TILL DELIVERY OF ALL THE MATERIALS AT OUR SITE,   AND AGAINST SUBMISSION OF PERFORMANCE BANKGUARANTEE FOR 10% BASIC VALUE VALID FOR 1 YEAR FROM THE DATE OF COMMISSIONING.'" }, { "po_number": 4300056603, "currency": "INR", "milestone_amount": 98304000, "date": "4/30/2019", "payment_term_details": "80% WITH ALL TAXES IN 30 DAYS FROM DELIVERY" }, { "po_number": 4300056603, "currency": "INR", "milestone_amount": 6144000, "date": "6/29/2019", "payment_term_details": "AND BALANCE 10% AFTER COMPLETION OF COMMISSIONING" }, { "po_number": 4300066650, "currency": "INR", "milestone_amount": 55141275, "date": "01/17/2019", "payment_term_details": "a. 25% of basic price Rs.5,83,27,875 will be paid as advance on receipt of your order acceptance and submission of Corporate Guarantee valid till completion of supply.',   " }, { "po_number": 4300066650, "currency": "INR", "milestone_amount": 286734630, "date": "9/6/2020", "payment_term_details": "b. 65 % with taxes immediately after delivery" }, { "po_number": 4300066650, "currency": "INR", "milestone_amount": 22056510, "date": "11/28/2020", "payment_term_details": " and balance 10% after commissioning.'" }, { "po_number": 4300067152, "currency": "INR", "milestone_amount": 12090000, "date": "02/07/2019", "payment_term_details": "10% ADVANCE AGAINST SUBMISSION OF BANK GUARANTEE FOR THE ADVANCE AMOUNT VALID TILL DELIVERY OF ALL THE MATERIALS AT OUR SITE,  AND AGAINST SUBMISSION OF PERFORMANCE BANKGUARANTEE FOR 10% BASIC VALUE VALID FOR 1 YEAR FROM THE DATE OF COMMISSIONING.'" }, { "po_number": 4300067152, "currency": "INR", "milestone_amount": 193440000, "date": "12/30/2019", "payment_term_details": "80% WITH ALL TAXES IN 30 DAYS FROM DELIVERY" }, { "po_number": 4300067152, "currency": "INR", "milestone_amount": 12090000, "date": "2/28/2020", "payment_term_details": " AND BALANCE 10% AFTER COMPLETION OF COMMISSIONING" }, { "po_number": 4300068332, "currency": "INR", "milestone_amount": 107575000, "date": "03/26/2019", "payment_term_details": "a. 25% of basic price Rs.10,75,75,000 will be paid as advance on receipt of your order ." }, { "po_number": 4300068332, "currency": "INR", "milestone_amount": 645450000, "date": "4/9/2020", "payment_term_details": "b. Balance with taxes in 10 days after receipt of materials." }, { "po_number": 4300066649, "currency": "INR", "milestone_amount": 42773225, "date": "01/17/2019", "payment_term_details": "a. 25% of basic price Rs.4,39,67,700 will be paid as advance on receipt of your order acceptance and submission of Corporate Guarantee valid till completion of supply.  " }, { "po_number": 4300066649, "currency": "INR", "milestone_amount": 222420770, "date": "12/7/2019", "payment_term_details": "b. 65 % with taxes immediately after delivery" }, { "po_number": 4300066649, "currency": "INR", "milestone_amount": 17109290, "date": "2/28/2020", "payment_term_details": "and balance 10% after commissioning." }, { "po_number": 4300067158, "currency": "INR", "milestone_amount": 193095000, "date": "02/07/19", "payment_term_details": "25% advance agsint submission of corporate Guarantee(already paid).. " }, { "po_number": 4300067158, "currency": "INR", "milestone_amount": 1004094000, "date": "1/15/2020", "payment_term_details": "L/C will be opened for 65% of Basic Order Value on receipt of Order acknowldegement payable in 180 days from the date of despatch. 100% GST will be paid agaisnt depatch" }, { "po_number": 4300067158, "currency": "INR", "milestone_amount": 77238000, "date": "4/7/2020", "payment_term_details": "10% will be paid after commissioning." }, { "po_number": 4300067522, "currency": "INR", "milestone_amount": 53848084.5, "date": "02/25/2019", "payment_term_details": "a. 15% of basic order value as advance against order acknowledgement and submission ABG for 15% of basic order value in the format given by us valid till the completion of supply.  for 10% of basic order value valid for 12 months from date of commissioning or 18 months from sate of supply. PBG shall be submitted along with the last consignment" }, { "po_number": 4300067522, "currency": "INR", "milestone_amount": 538480845, "date": "04/25/20", "payment_term_details": "b. 75%with taxes in 15 days after delivery of materials at site on pro-rata basis" }, { "po_number": 4300067522, "currency": "INR", "milestone_amount": 35898723, "date": "3/30/2021", "payment_term_details": "c. 10% against submission of PBG" }, { "po_number": 4300068174, "currency": "INR", "milestone_amount": 10150000, "date": "03/20/2019", "payment_term_details": "a. 25% of basic price Rs.1,01,50,000 will be paid as advance on receipt of your order acceptance and receipt of corporate guarantee. " }, { "po_number": 4300068174, "currency": "INR", "milestone_amount": 60900000, "date": "8/17/2019", "payment_term_details": " b. Balance 75% 5 with taxes will be paid on material receipt and submission of" }, { "po_number": 4300068331, "currency": "INR", "milestone_amount": 41231250, "date": "03/26/2019", "payment_term_details": "a. 25% of basic price Rs.4,12,31,250 will be paid as advance on receipt of your order . " }, { "po_number": 4300068331, "currency": "INR", "milestone_amount": 247387500, "date": "3/2/2020", "payment_term_details": "b. Balance with taxes in 10 days after receipt of materials." }]
+let record = [{ "po_number": " 1700001737 - 1", "currency": "EUR", "milestone_amount": 477475.2, "milestone_inr": 39630441.6, "date": "6/30/2017", "actual_date": "7/2/2017", "payment_term_details": "a. 20% payment in advance on presentation of bank guarantee as per format prescribed through our banker in India." }, { "po_number": " 1700001737 - 1", "currency": "EUR", "milestone_amount": 1909900.8, "milestone_inr": 158521766.4, "date": "3/10/2018", "actual_date": "3/13/2018", "payment_term_details": "b. 80% payment by a Letter of Credit will be opened 5 month#s prior to shipping through State Bank of Mysore, Chennai " }, { "po_number": " 1700001757 - 3", "currency": "EUR", "milestone_amount": 479055.2, "milestone_inr": 39761581.6, "date": "2/13/2019", "actual_date": "2/15/2019", "payment_term_details": "a. 20% payment in advance on presentation of bank guarantee as per format prescribed through our banker in India." }, { "po_number": " 1700001757 - 3", "currency": "EUR", "milestone_amount": 1916220.8, "milestone_inr": 159046326.4, "date": "4/9/2019", "actual_date": "4/21/2019", "payment_term_details": "b. 80% payment by a Letter of Credit will be opened 5 month#s prior to shipping through State Bank of Mysore, Chennai " }, { "po_number": " 1700001778 - 1", "currency": "EUR", "milestone_amount": 124815.75, "milestone_inr": 10359707.25, "date": "07/06/18", "actual_date": "7/6/2018", "payment_term_details": "a.15% payment in advance on presentation of bank guarantee as per format prescribed by our banker in India (Citi Bank)." }, { "po_number": " 1700001778 - 1", "currency": "EUR", "milestone_amount": 582473.5, "milestone_inr": 48345300.5, "date": "4/9/2019", "actual_date": "4/9/2019", "payment_term_details": "b. 75% payment by a Letter of Credit will be opened 3 month's prior to the shipment" }, { "po_number": " 1700001778 - 1", "currency": "EUR", "milestone_amount": 83210.5, "milestone_inr": 6906471.5, "date": "7/29/2019", "actual_date": "7/29/2019", "payment_term_details": "c. 10% after installation & commissioning and factry acceptance" }, { "po_number": " 1700001790 - 1", "currency": "EUR", "milestone_amount": 194200, "milestone_inr": 16118600, "date": "01/31/2018", "actual_date": "1/31/2018", "payment_term_details": "a.20% payment in advance on presentation of a bank guarantee as per format prescribed by our banker in India." }, { "po_number": " 1700001790 - 1", "currency": "EUR", "milestone_amount": 679700, "milestone_inr": 56415100, "date": "09/04/2019", "actual_date": "9/4/2019", "payment_term_details": "b.  80% will be confirmed by an ILC of which 70% will be paid against shipping documents as stated in the LC and  10% will be after  commissioning against Warranty Guarantee for 10% valid throughout the warranty period, payable latest 120 days from shipment date" }, { "po_number": " 1700002036 - 1", "currency": "USD", "milestone_amount": 2000199, "milestone_inr": 152015124, "date": "03/25/2019", "actual_date": "3/25/2019", "payment_term_details": "Payment terms: LC at Sight" }, { "po_number": " 1700002134 - 0", "currency": "EUR", "milestone_amount": 44064.5, "milestone_inr": 3657353.5, "date": "12/06/18", "actual_date": "12/12/2018", "payment_term_details": "a.10% payment in advance on presentation of a bank guarantee as per format prescribed by our banker in India. The ABG should be an advising." }, { "po_number": " 1700002134 - 0", "currency": "EUR", "milestone_amount": 396580.5, "milestone_inr": 32916181.5, "date": "8/10/2019", "actual_date": "8/10/2019", "payment_term_details": "b. 90% against presentation of Shipping documents and receipt of Performance Bank Gurantee (Refer warranty Clause) " }, { "po_number": " 1700002205 - 2", "currency": "USD", "milestone_amount": 11466, "milestone_inr": 871416, "date": "03/25/2019", "actual_date": "3/25/2019", "payment_term_details": "Payment terms : 10% advance and balance by LC." }, { "po_number": " 1700002205 - 2", "currency": "USD", "milestone_amount": 103194, "milestone_inr": 7842744, "date": "6/3/2019", "actual_date": "6/3/2019", "payment_term_details": "Payment terms : 10% advance and balance by LC." }, { "po_number": 4300056603, "currency": "INR", "milestone_amount": 6144000, "milestone_inr": 6144000, "date": "01/09/17", "actual_date": "1/9/2017", "payment_term_details": "10% ADVANCE AGAINST SUBMISSION OF BANK GUARANTEE FOR THE ADVANCE AMOUNT VALID TILL DELIVERY OF ALL THE MATERIALS AT OUR SITE,   AND AGAINST SUBMISSION OF PERFORMANCE BANKGUARANTEE FOR 10% BASIC VALUE VALID FOR 1 YEAR FROM THE DATE OF COMMISSIONING.'" }, { "po_number": 4300056603, "currency": "INR", "milestone_amount": 98304000, "milestone_inr": 98304000, "date": "4/30/2019", "actual_date": "4/30/2019", "payment_term_details": "80% WITH ALL TAXES IN 30 DAYS FROM DELIVERY" }, { "po_number": 4300056603, "currency": "INR", "milestone_amount": 6144000, "milestone_inr": 6144000, "date": "6/29/2019", "actual_date": "6/29/2019", "payment_term_details": "AND BALANCE 10% AFTER COMPLETION OF COMMISSIONING" }, { "po_number": 4300066650, "currency": "INR", "milestone_amount": 55141275, "milestone_inr": 55141275, "date": "01/17/2019", "actual_date": "1/17/2019", "payment_term_details": "a. 25% of basic price Rs.5,83,27,875 will be paid as advance on receipt of your order acceptance and submission of Corporate Guarantee valid till completion of supply.',   " }, { "po_number": 4300066650, "currency": "INR", "milestone_amount": 286734630, "milestone_inr": 286734630, "date": "9/6/2020", "actual_date": "9/6/2020", "payment_term_details": "b. 65 % with taxes immediately after delivery" }, { "po_number": 4300066650, "currency": "INR", "milestone_amount": 22056510, "milestone_inr": 22056510, "date": "11/28/2020", "actual_date": "11/28/2020", "payment_term_details": " and balance 10% after commissioning.'" }, { "po_number": 4300067152, "currency": "INR", "milestone_amount": 12090000, "milestone_inr": 12090000, "date": "02/07/2019", "actual_date": "2/7/2019", "payment_term_details": "10% ADVANCE AGAINST SUBMISSION OF BANK GUARANTEE FOR THE ADVANCE AMOUNT VALID TILL DELIVERY OF ALL THE MATERIALS AT OUR SITE,  AND AGAINST SUBMISSION OF PERFORMANCE BANKGUARANTEE FOR 10% BASIC VALUE VALID FOR 1 YEAR FROM THE DATE OF COMMISSIONING.'" }, { "po_number": 4300067152, "currency": "INR", "milestone_amount": 193440000, "milestone_inr": 193440000, "date": "12/30/2019", "actual_date": "12/30/2019", "payment_term_details": "80% WITH ALL TAXES IN 30 DAYS FROM DELIVERY" }, { "po_number": 4300067152, "currency": "INR", "milestone_amount": 12090000, "milestone_inr": 12090000, "date": "2/28/2020", "actual_date": "2/28/2020", "payment_term_details": " AND BALANCE 10% AFTER COMPLETION OF COMMISSIONING" }, { "po_number": 4300068332, "currency": "INR", "milestone_amount": 107575000, "milestone_inr": 107575000, "date": "03/26/2019", "actual_date": "3/26/2019", "payment_term_details": "a. 25% of basic price Rs.10,75,75,000 will be paid as advance on receipt of your order ." }, { "po_number": 4300068332, "currency": "INR", "milestone_amount": 645450000, "milestone_inr": 645450000, "date": "4/9/2020", "actual_date": "4/15/2020", "payment_term_details": "b. Balance with taxes in 10 days after receipt of materials." }, { "po_number": 4300066649, "currency": "INR", "milestone_amount": 42773225, "milestone_inr": 42773225, "date": "01/17/2019", "actual_date": "1/17/2019", "payment_term_details": "a. 25% of basic price Rs.4,39,67,700 will be paid as advance on receipt of your order acceptance and submission of Corporate Guarantee valid till completion of supply.  " }, { "po_number": 4300066649, "currency": "INR", "milestone_amount": 222420770, "milestone_inr": 222420770, "date": "12/7/2019", "actual_date": "12/7/2019", "payment_term_details": "b. 65 % with taxes immediately after delivery" }, { "po_number": 4300066649, "currency": "INR", "milestone_amount": 17109290, "milestone_inr": 17109290, "date": "2/28/2020", "actual_date": "2/28/2020", "payment_term_details": "and balance 10% after commissioning." }, { "po_number": 4300067158, "currency": "INR", "milestone_amount": 193095000, "milestone_inr": 193095000, "date": "02/07/19", "actual_date": "2/7/2019", "payment_term_details": "25% advance agsint submission of corporate Guarantee(already paid).. " }, { "po_number": 4300067158, "currency": "INR", "milestone_amount": 1004094000, "milestone_inr": 1004094000, "date": "1/15/2020", "actual_date": "1/15/2020", "payment_term_details": "L/C will be opened for 65% of Basic Order Value on receipt of Order acknowldegement payable in 180 days from the date of despatch. 100% GST will be paid agaisnt depatch" }, { "po_number": 4300067158, "currency": "INR", "milestone_amount": 77238000, "milestone_inr": 77238000, "date": "4/7/2020", "actual_date": "4/22/2020", "payment_term_details": "10% will be paid after commissioning." }, { "po_number": 4300067522, "currency": "INR", "milestone_amount": 53848084.5, "milestone_inr": 53848084.5, "date": "02/25/2019", "actual_date": "2/25/2019", "payment_term_details": "a. 15% of basic order value as advance against order acknowledgement and submission ABG for 15% of basic order value in the format given by us valid till the completion of supply.  for 10% of basic order value valid for 12 months from date of commissioning or 18 months from sate of supply. PBG shall be submitted along with the last consignment" }, { "po_number": 4300067522, "currency": "INR", "milestone_amount": 538480845, "milestone_inr": 538480845, "date": "04/25/20", "actual_date": "4/30/2020", "payment_term_details": "b. 75%with taxes in 15 days after delivery of materials at site on pro-rata basis" }, { "po_number": 4300067522, "currency": "INR", "milestone_amount": 35898723, "milestone_inr": 35898723, "date": "3/30/2021", "actual_date": "3/30/2021", "payment_term_details": "c. 10% against submission of PBG" }, { "po_number": 4300068174, "currency": "INR", "milestone_amount": 10150000, "milestone_inr": 10150000, "date": "03/20/2019", "actual_date": "3/20/2019", "payment_term_details": "a. 25% of basic price Rs.1,01,50,000 will be paid as advance on receipt of your order acceptance and receipt of corporate guarantee. " }, { "po_number": 4300068174, "currency": "INR", "milestone_amount": 60900000, "milestone_inr": 60900000, "date": "8/17/2019", "actual_date": "8/17/2019", "payment_term_details": " b. Balance 75% 5 with taxes will be paid on material receipt and submission of" }, { "po_number": 4300068331, "currency": "INR", "milestone_amount": 41231250, "milestone_inr": 41231250, "date": "03/26/2019", "actual_date": "3/26/2019", "payment_term_details": "a. 25% of basic price Rs.4,12,31,250 will be paid as advance on receipt of your order . " }, { "po_number": 4300068331, "currency": "INR", "milestone_amount": 247387500, "milestone_inr": 247387500, "date": "3/2/2020", "actual_date": "4/5/2020", "payment_term_details": "b. Balance with taxes in 10 days after receipt of materials." }]
 class App extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +25,7 @@ class App extends Component {
       sortType: true,
       rowsPerPageOptions: [10, 20, 30],
       currentPage: 1, rowsPerPage: 10, selectAllRow: false,
-      tableHeader: ["po_number", "date", "milestone_amount",],
+      tableHeader: ["po_number", "date", "milestone_inr"],
       tableRows: record,
       actualTableRows: record,
       tableTitle: "MRF Milestone Payments Dashboard"
@@ -73,21 +73,21 @@ class App extends Component {
     return tableRows
   }
   sortTable = (sortBy) => {
-    let { actualTableRows, sortType } = this.state
-    actualTableRows = _.sortBy(actualTableRows, function (o) {
-      console.log(sortBy)
-      if (sortBy === "date") {
-        return moment(o[sortBy]);
-      } else {
-        return o[sortBy]
-      }
-    })
-    if (sortType) {
-    } else {
-      actualTableRows = actualTableRows.reverse();
-      this.setState({ actualTableRows })
-    }
-    this.setState({ actualTableRows, tableRows: actualTableRows, sortBy, sortType: !sortType })
+    // let { actualTableRows, sortType } = this.state
+    // actualTableRows = _.sortBy(actualTableRows, function (o) {
+    //   console.log(sortBy)
+    //   if (sortBy === "date") {
+    //     return moment(o[sortBy]);
+    //   } else {
+    //     return o[sortBy]
+    //   }
+    // })
+    // if (sortType) {
+    // } else {
+    //   actualTableRows = actualTableRows.reverse();
+    //   this.setState({ actualTableRows })
+    // }
+    // this.setState({ actualTableRows, tableRows: actualTableRows, sortBy, sortType: !sortType })
   }
   // table sorting
   filterByDate = (dateObj) => {
@@ -159,16 +159,12 @@ class App extends Component {
     })
   }
   componentDidMount() {
-    let totalAmountChash = _.sumBy(this.state.actualTableRows, function (o) { return o["milestone_amount"]; })
-    totalAmountChash = totalAmountChash.toLocaleString('en-IN', {
-      maximumFractionDigits: 2,
-      style: 'currency',
-      currency: 'INR'
-    })
+    let totalAmountChash = _.sumBy(this.state.actualTableRows, function (o) { return o["milestone_inr"]; })
+
     this.setState({ totalAmountChash })
   }
   render() {
-    let { tableTitle, dateRange, totalAmountChash,showCalender, tableHeader, actualTableRows, selectAllRow, tableRows, rowsPerPageOptions, currentPage, rowsPerPage, startDate, endDate, key } = this.state
+    let { tableTitle, dateRange, totalAmountChash, showCalender, tableHeader, actualTableRows, selectAllRow, tableRows, rowsPerPageOptions, currentPage, rowsPerPage, startDate, endDate, key } = this.state
     const papaparseOptions = {
       header: true,
       dynamicTyping: true,
@@ -180,7 +176,8 @@ class App extends Component {
     }
     let totalAmount = 0
     if (tableRows && tableRows.length > 0) {
-      totalAmount = _.sumBy(tableRows, function (o) { return o["milestone_amount"]; })
+      totalAmount = _.sumBy(tableRows, function (o) { return o["milestone_inr"]; })
+
 
     }
     // let csvData = []
@@ -216,7 +213,7 @@ class App extends Component {
                     <div className="po_nunmber-circle">
                       <lable>{actualTableRows.length}</lable>
                     </div>
-                    <lable># of PO</lable>
+                    <lable># of POs</lable>
                   </div>
                   <div className="col-6">
                     <div className="mt-3">
@@ -225,9 +222,14 @@ class App extends Component {
                   </div>
                   <div className="col-3  ">
                     <div className="po_nunmber-circle">
-                      <lable className="wrap-text">{totalAmountChash}</lable>
+                      {/* <lable className="wrap-text">{totalAmountChash && totalAmountChash.toLocaleString('en-IN', {
+                        maximumFractionDigits: 2,
+                        style: 'currency',
+                        currency: 'INR'
+                      })}</lable> */}
+                        <lable className="wrap-text">{472}</lable>
                     </div>
-                    <lable>CASH FLOW</lable>
+                    <lable>cashflow (INR crore) </lable>
                   </div>
                 </div>
               </div>
@@ -245,8 +247,8 @@ class App extends Component {
             <div className="col-6 card ">
 
               {/* <button className="btn btn-primary  float-right" data-toggle="tooltip"
-            title="load CSV" onClick={e => { document.getElementById("ObiWan").click(); document.getElementById("ObiWan").value = null }}>
-            <i class="fas fa-file-download fa-lg mr-2"></i>
+                title="load CSV" onClick={e => { document.getElementById("ObiWan").click(); document.getElementById("ObiWan").value = null }}>
+                <i class="fas fa-file-download fa-lg mr-2"></i>
             upload file
             </button> */}
               {tableHeader && tableHeader.length > 0 ?
@@ -263,7 +265,14 @@ class App extends Component {
                     Export CSV
               </button>
                       </CSVLink>
-                      <lable className="text-bold font-weight-bold text-danger ml-2">Total Milestone Amount is: </lable><span className="font-weight-bold ">{totalAmount.toFixed(2)}</span>
+                      <lable className="text-bold font-weight-bold text-danger ml-2">Total Milestone Amount is: </lable>
+                      <span className="font-weight-bold ">{totalAmount && totalAmount.toLocaleString('en-IN', {
+                        maximumFractionDigits: 2,
+                        style: 'currency',
+                        currency: 'INR'
+                      })}</span>
+
+                    <span className="text-bold font-weight-bold text-danger ml-2">PO count : </span><label>{tableRows&&tableRows.length}</label>
                     </div>
                     : null}
 
@@ -308,7 +317,10 @@ class App extends Component {
                         checked={selectAllRow}
                         inputProps={{ 'aria-labelledby': 1 }}
                       /><span>Select All</span></th> */}
-                        {tableHeader && tableHeader.map((header, index) => <th className="c-pointer" key={index} style={{ width: header === "payment_term_details" ? "50%" : "" }} onClick={e => this.sortTable(header)}>{header}</th>)}
+                        {/* {tableHeader && tableHeader.map((header, index) => <th className="c-pointer" key={index} style={{ width: header === "payment_term_details" ? "50%" : "" }} onClick={e => this.sortTable(header)}>{header}</th>)} */}
+                        <th className="c-pointer" onClick={e => this.sortTable('po_number')}>PO Number</th>
+                        <th className="c-pointer" onClick={e => this.sortTable('date')}>Date</th>
+                        <th className="c-pointer" onClick={e => this.sortTable('milestone_inr')}>Milestone INR</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -324,7 +336,7 @@ class App extends Component {
                         {tableHeader && tableHeader.map((header, index) =>
                           <td key={index}>
 
-                            {header === "date" ? moment(rowObj[header], "MM/DD/YYYY").format("DD/MM/YYYY") : rowObj[header]}</td>
+                            {header === "date" ? moment(rowObj[header], "MM/DD/YYYY").format("DD/MM/YYYY") : header === "milestone_inr" ? new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(rowObj[header]) : rowObj[header]}</td>
                         )}
                       </tr>
                       )}

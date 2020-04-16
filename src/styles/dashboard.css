@@ -30,6 +30,33 @@
 
 .custom-table{
     display: block;
-    height: 372px;
+    height: 390px;
     overflow-y: scroll;
+}
+.x-axis-label{
+    transform: rotate(-90deg);
+}
+
+g text{
+    font-weight: 600;
+}
+.po-select {
+    /* width: 12%; */
+    width: 21%
+}
+.year-select option {
+   background-color: white;
+   color: black;
+}
+.cash-flow-title{
+font-weight: bold;
+}
+.sub-title{
+    font-size: 14px;
+}
+.filter-option{
+    width: 100%;
+    position: absolute;
+    top: 4%;
+    z-index: 1;
 }
