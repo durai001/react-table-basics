@@ -1,43 +1,106 @@
 import React, { Component } from 'react';
 import { Chart } from "react-google-charts";
+import _ from "lodash";
+import moment from "moment";
+
 
 class monthchartcomponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: props.actualTableRows
+            chartData: props.actualTableRows,
+            chartValueCash: [], chartValuePO: []
         }
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
+        this.getCurrentFourMonthData()
     }
+    getCurrentFourMonthData = () => {
+        let { chartData } = { ...this.state }
+        let currentYear = moment().year()
+        let currentMonth = moment().month()
+        let chartValueCash = []
+        let chartValuePO = []
+        let temp = []
+        chartData=chartData.sort(function compare(a, b) {
+            var dateA = new Date(a.date);
+            var dateB = new Date(b.date);
+            return dateA - dateB;
+          });
+
+        _.filter(chartData, function (o) {
+            let tableRowYear = moment(o.date).year()
+            let tableRowMonth = moment(o.date).month()
+            if ((currentMonth - 1) <= tableRowMonth && (currentMonth + 2) >= tableRowMonth && currentYear === tableRowYear) {
+                o.month = moment(o.date).format("MMMM")
+                temp.push(o)
+            }
+        })
+        let obj = _.groupBy(temp, 'month')
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                chartValuePO.push([key, obj[key].length])
+                let total = _.sumBy(obj[key], "milestone_inr")
+                chartValueCash.push([key, total])
+            }
+        }
+        this.setState({ chartValueCash, chartValuePO })
+    }
+
+
     render() {
-        // console.log(this.state.chartData)
+        let { chartValueCash, chartValuePO } = { ...this.state }
+
         return (
-            <div>
+            <div className="row col-12  ">
+                <div className="col-6">
+                    <Chart className="mt-1"
+                        width={'100%'}
+                        height={'380px'}
+                        chartType="Bar"
+                        lo ader={<div>Loading Chart</div>}
+                        data={[
+                            ['Month', 'cashflow INR'],
+                            ...chartValueCash,
+                        ]}
+                        options={{
+                            // Material design options
+                            chart: {
+                                title: 'Monthly Cashflow Milestone',
+                                // subtitle: 'cashflow (INR crore) In Crores',
+                            },
+                        }}
+                        // For tests
+                        rootProps={{ 'data-testid': '2' }}
+                    />
+                </div>
+                <div className="col-6">
+                    <Chart className="mt-1"
+                        width={'100%'}
+                        height={'380px'}
+                        chartType="Bar"
+                        lo ader={<div>Loading Chart</div>}
+                        data={[
+                            ['Month', 'POs count'],
+                            ...chartValuePO,
+                        ]}
+                        options={{
+                            // Material design options
+                            chart: {
+                                title: 'Monthly POs count',
+                                // subtitle: 'cashflow (INR crore) In Crores',
+                            },
+                            colors: ['#ffc107']
+                        }}
+                        // For tests
+                        rootProps={{ 'data-testid': '2' }}
+                    />
+                </div>
+
+
+
                 {/* <label className="x-axis-label">cashflow (INR crore) In Crores</label> */}
-                <Chart
-                    width={'100%'}
-                    height={'300px'}
-                    chartType="Bar"
-                    lo ader={<div>Loading Chart</div>}
-                    data={[
-                        ['Month', 'cashflow (INR crore)', "carry forward (INR crore)",'PO Count'],
-                        ['March', 1000, 400, 200],
-                        ['April', 1170, 460, 250],
-                        ['May', 660, 1120, 300],
-                        ['June', 1030, 540, 350],
-                    ]}
-                    options={{
-                        // Material design options
-                        chart: {    
-                            title: 'Monthly MRF Milestone',
-                            subtitle: 'cashflow (INR crore) In Crores',
-                        },
-                    }}
-                    // For tests
-                    rootProps={{ 'data-testid': '2' }}
-                />
+
                 {/* <Chart
                    width={'100%'}
                     height={'300px'}
