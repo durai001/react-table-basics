@@ -32,7 +32,6 @@ class weekchartcomponent extends Component {
             let tableRowMonth = moment(o.date).month()+1
             let tableRowdate = moment(o.date,"MM/DD/YYYY").date()
             if (currentMonth === tableRowMonth && currentYear === tableRowYear) {
-            console.log(tableRowdate,currentMonth,tableRowYear,o.date)
                 if (1 <= tableRowdate && 7 >= tableRowdate) {
                     o.week = "1st Week"
                     temp.push(o)
@@ -52,7 +51,6 @@ class weekchartcomponent extends Component {
             }
 
         })
-        console.log(temp)
         let obj = _.groupBy(temp, 'week')
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
@@ -61,7 +59,6 @@ class weekchartcomponent extends Component {
                 chartValueCash.push([key, total])
             }
         }
-        console.log(chartValueCash, chartValuePO)
         this.setState({ chartValueCash, chartValuePO })
     }
 

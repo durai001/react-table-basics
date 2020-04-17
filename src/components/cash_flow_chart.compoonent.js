@@ -11,7 +11,7 @@ class cashflowcomponent extends Component {
         this.state = {
             actualTableRows: props.actualTableRows,
             chartData: props.tableRows,
-            chartValue: [], 
+            chartValue: [],
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -33,16 +33,17 @@ class cashflowcomponent extends Component {
                     return o
                 }
             })
-            this.setState({ startDate: date, currentPage: 1, chartData },()=>this.handleFilter(chartData&&chartData[0]&&chartData[0].po_number||0))
+            this.setState({ startDate: date, cu9iurrentPage: 1, chartData }, () => this.handleFilter(chartData && chartData[0] && chartData[0].po_number || 0))
         } else {
             this.setState({ chartData: actualTableRows, startDate: null })
         }
-    };
+    };  
     handleFilter = (po_number) => {
         let { chartData } = { ...this.state }
         let chartValue = []
+        console.log(parseInt(po_number))
         _.filter(chartData, (o) => {
-            if (o.po_number === parseInt(po_number)) {
+            if (o.po_number.toString() ===  po_number) {
                 chartValue.push([po_number.toString(), o[["milestone_inr"]]])
             }
         })
@@ -50,7 +51,7 @@ class cashflowcomponent extends Component {
     }
     render() {
         let { po_number, chartValue, chartData, startDate } = { ...this.state }
-        chartData=_.uniqBy(chartData,'po_number')
+        chartData = _.uniqBy(chartData, 'po_number')
         return (
             <div>
                 <div className="row filter-option">
