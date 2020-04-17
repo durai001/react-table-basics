@@ -39,12 +39,14 @@ class cashflowcomponent extends Component {
         }
     };  
     handleFilter = (po_number) => {
-        let { chartData } = { ...this.state }
+        let { chartData ,actualTableRows} = { ...this.state }
+        console.log(chartData)
         let chartValue = []
-        console.log(parseInt(po_number))
-        _.filter(chartData, (o) => {
+        console.log( po_number)
+        _.filter(actualTableRows, (o) => {
             if (o.po_number.toString() ===  po_number) {
-                chartValue.push([po_number.toString(), o[["milestone_inr"]]])
+                let xAxis=  moment(o.date,"MM/DD/YYYY").format("MMM-YYYY") 
+                chartValue.push([xAxis, o[["milestone_inr"]]])
             }
         })
         this.setState({ chartValue, po_number })

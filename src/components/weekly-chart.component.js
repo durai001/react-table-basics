@@ -101,8 +101,7 @@ class weekchartcomponent extends Component {
                         ]}
                         options={{
                             hAxis: {
-                                minValue: 0,
-                                ticks: [0, .3, .6, .9, 1]
+                                minValue: 1,
                               },
                             // Material design options
                             chart: {
