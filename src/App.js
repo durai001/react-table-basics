@@ -203,6 +203,12 @@ class App extends Component {
       totalAmount = _.sumBy(tableRows, function (o) { return o["milestone_inr"]; })
     }
 
+    tableRows = tableRows.sort(function compare(a, b) {
+      var dateA = new Date(a.date);
+      var dateB = new Date(b.date);
+      return dateB - dateA;
+    });
+
     return (
       <div className=" App">
 
@@ -215,25 +221,35 @@ class App extends Component {
           inputStyle={{ color: 'red' }}
         />
         <div className="card-body">
-          <h2 className="d-inline">
+          <h2 className="d-inline dashboard-title">
             {tableTitle}
           </h2>
 
-
           <div className="row">
             <div className="col-12">
-              <div className="card-header status-card">
-                <div className="row">
-                  <div className="col-3">
-                    {/* <div className="po_nunmber-circle">
-                      <lable>{actualTableRows.length}</lable>
-                    </div> */}
-                    <b className="text-danger">Number of POs: </b>
-                    <div className="ml-2">{number_of_po}</div>
+              <div className="status-card mb-4">
 
-                  </div>
-                  <div className="col-6">
-                    {/* <lable>Select Month </lable> */}
+                {/* <div className="month-picker d-inline ">
+                  <DatePicker className="form-control"
+                    showMonthYearPicker
+                    dateFormat="MM/yyyy"
+                    selected={this.state.startDate}
+                    placeholderText="Select a month"
+                    isClearable
+                    onChange={this.handleMonthChange}
+                  />
+                </div>
+                <b className="text-danger ml-2">Number of POs: </b><span className="">{number_of_po}</span>
+                <b className="text-danger ml-3"> Cashflow Plan: </b>
+                <span className="wrap-text  ml-1">{po_milestone && po_milestone.toLocaleString('en-IN', {
+                  maximumFractionDigits: 2,
+                  style: 'currency',
+                  currency: 'INR'
+                })}</span> */}
+
+
+                <div className="row">
+                  <div className="col-1.5">
                     <div className="month-picker">
                       <DatePicker className="form-control"
                         showMonthYearPicker
@@ -245,20 +261,16 @@ class App extends Component {
                       />
                     </div>
                   </div>
-                  <div className="col-3  ">
-                    {/* <div className="po_nunmber-circle">
-                      <lable className="wrap-text">{totalAmountChash && totalAmountChash.toLocaleString('en-IN', {
-                        maximumFractionDigits: 2,
-                        style: 'currency',
-                        currency: 'INR'
-                      })}</lable>
-                    </div> */}
-                    <b className="text-danger"> PO Milestone: </b>
-                    <div className="wrap-text ml-2">{po_milestone && po_milestone.toLocaleString('en-IN', {
+                  <div className="col-1.5 ml-2 mt-2">
+                    <b className="text-danger ">Number of POs: </b><span className="">{number_of_po}</span>
+                  </div>
+                  <div className="col-6 mt-2">
+                    <b className="text-danger "> Cashflow Plan: </b>
+                    <span className="wrap-text  ml-1">{po_milestone && po_milestone.toLocaleString('en-IN', {
                       maximumFractionDigits: 2,
                       style: 'currency',
                       currency: 'INR'
-                    })}</div>
+                    })}</span>
 
                   </div>
                 </div>
@@ -282,9 +294,11 @@ class App extends Component {
             upload file
             </button> */}
               {tableHeader && tableHeader.length > 0 ?
-                < div className="mt-4 custom-table">
+                < div className="mt-2 custom-table">
+                  <div className="chart-title pull-left">Cashflow plan summary, Number of POs</div><br></br>
+
                   {tableRows && tableRows.length > 0 ?
-                    <div className="float-left" >
+                    <div className="float-left mt-2"   >
                       <CSVLink filename={"MRF.csv"} data={tableRows} id="CSVLink">
                         <button
                           type="button"
@@ -295,18 +309,18 @@ class App extends Component {
                     Export CSV
               </button>
                       </CSVLink>
-                      <lable className="text-bold font-weight-bold text-danger ml-2">Total Milestone Amount is: </lable>
+                      <lable className="text-bold font-weight-bold text-danger ml-2">Total Plan Amount is: </lable>
                       <span className="font-weight-bold ">{totalAmount && totalAmount.toLocaleString('en-IN', {
                         maximumFractionDigits: 2,
                         style: 'currency',
                         currency: 'INR'
                       })}</span>
 
-                      <span className="text-bold font-weight-bold text-danger ml-2">PO count : </span><label>{tableRows && tableRows.length}</label>
+                      <span className="text-bold font-weight-bold text-danger ml-2">Number of POs : </span><label>{tableRows && tableRows.length}</label>
                     </div>
                     : null}
 
-                  <span>
+                  <span className="mt-2">
                     {/* <div className="date-range-picker">
                     <DatePicker className="form-control"
                       selected={startDate}  
@@ -353,7 +367,6 @@ class App extends Component {
 
                   </span>
 
-
                   <table className="table table-hover ">
                     <thead>
                       <tr>
@@ -368,7 +381,7 @@ class App extends Component {
                         {/* {tableHeader && tableHeader.map((header, index) => <th className="c-pointer" key={index} style={{ width: header === "payment_term_details" ? "50%" : "" }} onClick={e => this.sortTable(header)}>{header}</th>)} */}
                         <th className="c-pointer" onClick={e => this.sortTable('po_number')}>PO Number</th>
                         <th className="c-pointer" onClick={e => this.sortTable('date')}>Date</th>
-                        <th className="c-pointer" onClick={e => this.sortTable('milestone_inr')}>Milestone INR</th>
+                        <th className="c-pointer" onClick={e => this.sortTable('milestone_inr')}>Plan INR</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -385,13 +398,13 @@ class App extends Component {
                           <td key={i}>
 
                             {header === "date" ? moment(rowObj[header], "MM/DD/YYYY").format("DD/MM/YYYY") : header === "milestone_inr" ?
-                             rowObj[header]
-                            .toLocaleString('en-IN', {
-                              maximumFractionDigits: 2,
-                              style: 'currency',
-                              currency: 'INR'
-                            })
-                             : rowObj[header]}</td>
+                              rowObj[header]
+                                .toLocaleString('en-IN', {
+                                  maximumFractionDigits: 2,
+                                  style: 'currency',
+                                  currency: 'INR'
+                                })
+                              : rowObj[header]}</td>
                         )}
                       </tr>
                       )}

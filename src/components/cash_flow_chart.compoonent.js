@@ -5,6 +5,7 @@ import _ from "lodash";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 
+
 class cashflowcomponent extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ class cashflowcomponent extends Component {
             })
             this.setState({ startDate: date, cu9iurrentPage: 1, chartData }, () => this.handleFilter(chartData && chartData[0] && chartData[0].po_number || 0))
         } else {
-            this.setState({ chartData: actualTableRows, startDate: null })
+            this.setState({ chartData: actualTableRows, startDate: null }, () => this.handleFilter(0))
         }
     };  
     handleFilter = (po_number) => {
@@ -44,23 +45,23 @@ class cashflowcomponent extends Component {
         let chartValue = []
         console.log( po_number)
         _.filter(actualTableRows, (o) => {
-            if (o.po_number.toString() ===  po_number) {
-                let xAxis=  moment(o.date,"MM/DD/YYYY").format("MMM-YYYY") 
-                chartValue.push([xAxis, o[["milestone_inr"]]])
+            if (o.po_number.toString() ===  po_number.toString()) {
+                let xAxis=  moment(o.date,"MM/DD/YYYY").format("MMM-YYYY")
+                console.log(o[["milestone_inr"]]/10000000) 
+                chartValue.push([xAxis, o[["milestone_inr"]]/10000000])
             }
         })
         this.setState({ chartValue, po_number })
     }
+    
     render() {
         let { po_number, chartValue, chartData, startDate } = { ...this.state }
         chartData = _.uniqBy(chartData, 'po_number')
         return (
             <div>
                 <div className="row filter-option">
-                    <div className="col-5 ">
-                    </div>
-                    <div className="col-3.5">
-                        <DatePicker className="form-control"
+                    <div className=" month-year-picker">
+                        <DatePicker className="form-control "
                             showMonthYearPicker
                             dateFormat="MM/yyyy"
                             selected={this.state.startDate}
@@ -81,14 +82,18 @@ class cashflowcomponent extends Component {
                     chartType="Bar"
                     loader={<div>Loading Chart</div>}
                     data={[
-                        ['Month', 'cashflow INR'],
+                        ['Month', 'Cashflow (INR Crore)'],
                         ...chartValue
 
                     ]}
+                   
                     options={{
+                        
+
                         // Material design options
                         chart: {
-                            title: 'Cashflow Milestone',
+                            title: 'Cashflow plan by PO',
+                            language:'hi_IN',
                             // subtitle: 'cashflow (INR crore) In Crores',
                         },
                     }}

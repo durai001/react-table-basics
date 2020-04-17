@@ -41,7 +41,7 @@ class monthchartcomponent extends Component {
             if (obj.hasOwnProperty(key)) {
                 chartValuePO.push([key, obj[key].length])
                 let total = _.sumBy(obj[key], "milestone_inr")
-                chartValueCash.push([key, total])
+                chartValueCash.push([key, total/10000000])
             }
         }
         this.setState({ chartValueCash, chartValuePO })
@@ -60,13 +60,13 @@ class monthchartcomponent extends Component {
                         chartType="Bar"
                         lo ader={<div>Loading Chart</div>}
                         data={[
-                            ['Month', 'cashflow INR'],
+                            ['Month', 'Cashflow (INR Crore)'],
                             ...chartValueCash,
                         ]}
                         options={{
                             // Material design options
                             chart: {
-                                title: 'Monthly Cashflow Milestone',
+                                title: 'Monthly Cashflow Plan',
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },
                         }}
@@ -81,13 +81,13 @@ class monthchartcomponent extends Component {
                         chartType="Bar"
                         lo ader={<div>Loading Chart</div>}
                         data={[
-                            ['Month', 'POs count'],
+                            ['Month', 'Number of POs'],
                             ...chartValuePO,
                         ]}
                         options={{
                             // Material design options
                             chart: {
-                                title: 'Monthly POs count',
+                                title: 'Monthly POs',
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },
                             colors: ['#ffc107']

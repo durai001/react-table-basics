@@ -1,5 +1,6 @@
 .status-card{
-    background-color: white;
+    /* background-color: white; */
+    text-align: left;
 }
 .po_nunmber-circle {
     font: 32px Arial, sans-serif;
@@ -42,7 +43,7 @@ g text{
 }
 .po-select {
     /* width: 12%; */
-    width: 21%
+    width: 45%;
 }
 .year-select option {
    background-color: white;
@@ -55,10 +56,10 @@ font-weight: bold;
     font-size: 14px;
 }
 .filter-option{
-    right: 6%;
-    width: 81%;
+    right: 1%;
+    width: 38%;
     position: absolute;
-    top: 4%;
+    top: 2%;
     z-index: 1;
 }
 
@@ -66,5 +67,19 @@ font-weight: bold;
     width: 14%!important
 }
 .month-picker .react-datepicker-wrapper{
-    width: 22% !important
+    /* width: 15% !important */
+}
+
+.chart-title{
+ color:rgb(117, 117, 117);;
+ font-size: medium;
+ font-weight: bold;
+}
+
+.month-year-picker{
+    width: 42%;
+}
+.dashboard-title{
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }

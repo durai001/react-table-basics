@@ -56,7 +56,7 @@ class weekchartcomponent extends Component {
             if (obj.hasOwnProperty(key)) {
                 chartValuePO.push([key, obj[key].length])
                 let total = _.sumBy(obj[key], "milestone_inr")
-                chartValueCash.push([key, total])
+                chartValueCash.push([key, total/10000000])
             }
         }
         this.setState({ chartValueCash, chartValuePO })
@@ -74,13 +74,13 @@ class weekchartcomponent extends Component {
                         chartType="Bar"
                         loader={<div>Loading Chart</div>}
                         data={[
-                            ['Week', 'cashflow  INR'],
+                            ['Week', 'Cashflow (INR Crore)'],
                             ...chartValueCash
                         ]}
                         options={{
                             // Material design options
                             chart: {
-                                title: 'April Milestone',
+                                title: 'April Chashflow Plan',
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },
 
@@ -96,14 +96,23 @@ class weekchartcomponent extends Component {
                         chartType="Bar"
                         loader={<div>Loading Chart</div>}
                         data={[
-                            ['Week', 'POs count'],
+                            ['Week', 'Number of POs'],
                             ...chartValuePO
                         ]}
                         options={{
-                            hAxis: {
-                                minValue: 1,
-                              },
+                             
                             // Material design options
+                            axes: {
+                            axis: 'distance',
+                                y: {
+                                    all: {
+                                        range: {
+                                            min: 0,
+                                        }
+                                    }
+                                }
+                            },
+                          
                             chart: {
                                 
                                 title: 'April POs count',
