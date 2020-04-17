@@ -81,13 +81,13 @@ class monthchartcomponent extends Component {
                         chartType="Bar"
                         lo ader={<div>Loading Chart</div>}
                         data={[
-                            ['Month', 'Number of POs'],
+                            ['Month', 'Number of PO'],
                             ...chartValuePO,
                         ]}
                         options={{
                             // Material design options
                             chart: {
-                                title: 'Monthly POs',
+                                title: 'Monthly PO',
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },
                             colors: ['#ffc107']

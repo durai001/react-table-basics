@@ -96,7 +96,7 @@ class weekchartcomponent extends Component {
                         chartType="Bar"
                         loader={<div>Loading Chart</div>}
                         data={[
-                            ['Week', 'Number of POs'],
+                            ['Week', 'Number of PO'],
                             ...chartValuePO
                         ]}
                         options={{
@@ -115,7 +115,7 @@ class weekchartcomponent extends Component {
                           
                             chart: {
                                 
-                                title: 'April POs count',
+                                title: 'April PO',
                                 minValue: 1,
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },

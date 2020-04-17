@@ -239,7 +239,7 @@ class App extends Component {
                     onChange={this.handleMonthChange}
                   />
                 </div>
-                <b className="text-danger ml-2">Number of POs: </b><span className="">{number_of_po}</span>
+                <b className="text-danger ml-2">Number of PO: </b><span className="">{number_of_po}</span>
                 <b className="text-danger ml-3"> Cashflow Plan: </b>
                 <span className="wrap-text  ml-1">{po_milestone && po_milestone.toLocaleString('en-IN', {
                   maximumFractionDigits: 2,
@@ -262,7 +262,7 @@ class App extends Component {
                     </div>
                   </div>
                   <div className="col-1.5 ml-2 mt-2">
-                    <b className="text-danger ">Number of POs: </b><span className="">{number_of_po}</span>
+                    <b className="text-danger ">Number of PO: </b><span className="">{number_of_po}</span>
                   </div>
                   <div className="col-6 mt-2">
                     <b className="text-danger "> Cashflow Plan: </b>
@@ -295,7 +295,7 @@ class App extends Component {
             </button> */}
               {tableHeader && tableHeader.length > 0 ?
                 < div className="mt-2 custom-table">
-                  <div className="chart-title pull-left">Cashflow plan summary, Number of POs</div><br></br>
+                  <div className="chart-title pull-left">Cashflow plan summary, Number of PO</div><br></br>
 
                   {tableRows && tableRows.length > 0 ?
                     <div className="float-left mt-2"   >
@@ -316,7 +316,7 @@ class App extends Component {
                         currency: 'INR'
                       })}</span>
 
-                      <span className="text-bold font-weight-bold text-danger ml-2">Number of POs : </span><label>{tableRows && tableRows.length}</label>
+                      <span className="text-bold font-weight-bold text-danger ml-2">Number of PO : </span><label>{tableRows && tableRows.length}</label>
                     </div>
                     : null}
 
