@@ -7,7 +7,7 @@ class weekchartcomponent extends Component {
         super(props);
         this.state = {
             chartData: props.actualTableRows,
-            chartValueCash: [], chartValuePO: []
+            chartValueCash: [], chartValuePOs: []
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -20,7 +20,7 @@ class weekchartcomponent extends Component {
         let currentYear = moment().year()
         let currentMonth = moment().month()+1
         let chartValueCash = []
-        let chartValuePO = []
+        let chartValuePOs = []
         let temp = []
         chartData=chartData.sort(function compare(a, b) {
             var dateA = new Date(a.date);
@@ -54,17 +54,17 @@ class weekchartcomponent extends Component {
         let obj = _.groupBy(temp, 'week')
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
-                chartValuePO.push([key, obj[key].length])
+                chartValuePOs.push([key, obj[key].length])
                 let total = _.sumBy(obj[key], "milestone_inr")
                 chartValueCash.push([key, total/10000000])
             }
         }
-        this.setState({ chartValueCash, chartValuePO })
+        this.setState({ chartValueCash, chartValuePOs })
     }
 
 
     render() {
-        let { chartValueCash, chartValuePO } = { ...this.state }
+        let { chartValueCash, chartValuePOs } = { ...this.state }
         return (
             <div className="row col-12  ">
                 <div className="col-6">
@@ -80,7 +80,7 @@ class weekchartcomponent extends Component {
                         options={{
                             // Material design options
                             chart: {
-                                title: 'April Chashflow Plan',
+                                title: 'April Cashflow Plan',
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },
 
@@ -96,8 +96,8 @@ class weekchartcomponent extends Component {
                         chartType="Bar"
                         loader={<div>Loading Chart</div>}
                         data={[
-                            ['Week', 'Number of PO'],
-                            ...chartValuePO
+                            ['Week', 'Number of POs'],
+                            ...chartValuePOs
                         ]}
                         options={{
                              
@@ -115,7 +115,7 @@ class weekchartcomponent extends Component {
                           
                             chart: {
                                 
-                                title: 'April PO',
+                                title: 'April POs',
                                 minValue: 1,
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },

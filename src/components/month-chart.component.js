@@ -9,7 +9,7 @@ class monthchartcomponent extends Component {
         super(props);
         this.state = {
             chartData: props.actualTableRows,
-            chartValueCash: [], chartValuePO: []
+            chartValueCash: [], chartValuePOs: []
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -20,7 +20,7 @@ class monthchartcomponent extends Component {
         let currentYear = moment().year()
         let currentMonth = moment().month()
         let chartValueCash = []
-        let chartValuePO = []
+        let chartValuePOs = []
         let temp = []
         chartData=chartData.sort(function compare(a, b) {
             var dateA = new Date(a.date);
@@ -39,17 +39,17 @@ class monthchartcomponent extends Component {
         let obj = _.groupBy(temp, 'month')
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
-                chartValuePO.push([key, obj[key].length])
+                chartValuePOs.push([key, obj[key].length])
                 let total = _.sumBy(obj[key], "milestone_inr")
                 chartValueCash.push([key, total/10000000])
             }
         }
-        this.setState({ chartValueCash, chartValuePO })
+        this.setState({ chartValueCash, chartValuePOs })
     }
 
 
     render() {
-        let { chartValueCash, chartValuePO } = { ...this.state }
+        let { chartValueCash, chartValuePOs } = { ...this.state }
 
         return (
             <div className="row col-12  ">
@@ -81,13 +81,13 @@ class monthchartcomponent extends Component {
                         chartType="Bar"
                         lo ader={<div>Loading Chart</div>}
                         data={[
-                            ['Month', 'Number of PO'],
-                            ...chartValuePO,
+                            ['Month', 'Number of POs'],
+                            ...chartValuePOs,
                         ]}
                         options={{
                             // Material design options
                             chart: {
-                                title: 'Monthly PO',
+                                title: 'Monthly POs',
                                 // subtitle: 'cashflow (INR crore) In Crores',
                             },
                             colors: ['#ffc107']
